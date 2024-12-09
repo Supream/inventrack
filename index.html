@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>
+   InvenTrack
+  </title>
+  <style>
+   @font-face {
+        font-family: "SFPB";
+        font-weight: 400;
+        src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        background-color: #2e3440;
+      }
+
+      html,
+      body {
+        color: hsl(220, 50%, 90%);
+        font-size: 16px;
+        font-family: "Helvetica Neue", "SFPB", Arial, sans-serif;
+        line-height: 1.4;
+      }
+
+      body {
+        padding: 20px;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 800px;
+        margin: 0 auto 3rem auto;
+      }
+      .flex-item {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: top;
+        width: 100%;
+        gap: 1rem 2rem;
+      }
+      .flex-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+      .flex-item img {
+        width: 40%;
+      }
+      .flex-item div {
+        width: 60%;
+      }
+      .flex-item:nth-child(odd) div {
+        text-align: right;
+      }
+      .flex-item h3 {
+        letter-spacing: -0.04rem;
+        font-weight: 700;
+        padding-top: calc(1.5vw + 1.5rem);
+        padding-bottom: 0.2rem;
+        font-size: 2rem;
+        color: hsl(211, 100%, 65%);
+        background: radial-gradient(hsl(211, 100%, 80%), hsl(211, 100%, 65%));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .flex-item p {
+        letter-spacing: -0.01rem;
+        font-size: 1.3rem;
+        padding: 0 4rem 0 0;
+      }
+      .flex-item:nth-child(odd) p {
+        padding: 0 0 0 4rem;
+      }
+
+      .hero {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 9vh;
+        padding-bottom: 4rem;
+        margin-bottom: 0;
+      }
+
+      .hero h1 {
+        line-height: 0.95;
+        letter-spacing: -0.06rem;
+        font-size: 2.7rem;
+        color: hsl(211, 100%, 65%);
+        background: conic-gradient(
+          hsl(211, 100%, 85%),
+          hsl(211, 100%, 95%),
+          hsl(211, 100%, 75%)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        padding-bottom: 1.2rem;
+      }
+
+      .hero p,
+      .bottom p {
+        font-size: 1.3rem;
+        margin-bottom: 0.7rem;
+      }
+
+      .proof {
+        padding-top: 1rem;
+        padding-bottom: 1.2rem;
+        display: block;
+        margin: 0 0.9rem 0 0.9rem;
+        text-align: center;
+      }
+
+      .proof .stars {
+        letter-spacing: 0.05rem;
+        font-size: 1rem;
+        background: linear-gradient(
+          to bottom left,
+          hsl(42, 90%, 85%),
+          hsl(42, 90%, 45%),
+          hsl(42, 90%, 75%)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        vertical-align: middle;
+      }
+
+      .proof img {
+        width: 26vw;
+        max-width: 120px;
+        vertical-align: middle;
+      }
+
+      .proof .join {
+        vertical-align: middle;
+        color: #aaa;
+        font-size: 0.85rem;
+      }
+
+      .bottom {
+        text-align: center;
+        margin-top: 5rem;
+      }
+
+      br.med {
+        display: block;
+      }
+
+      br.rev-med {
+        display: none;
+      }
+
+      .button {
+        font-family: "SF Pro Display";
+        letter-spacing: -0.03rem;
+        text-decoration: none;
+        border-radius: 10rem;
+        padding: 0.6rem 1.5rem 0.85rem 1.8rem;
+        font-size: 2rem;
+        font-weight: 500;
+        font-family: inherit;
+        border: 3px solid hsl(211, 100%, 75%);
+        color: hsl(211, 100%, 75%);
+        outline: none !important;
+        position: relative;
+        z-index: 3;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.1s ease-out;
+        margin-left: 0.2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+      }
+
+      .button:hover {
+        background: radial-gradient(
+          hsl(211, 100%, 80%),
+          hsl(211, 100%, 75%),
+          hsl(211, 100%, 55%)
+        );
+        -webkit-background-clip: none;
+        -webkit-text-fill-color: black;
+        color: black;
+      }
+
+      .button:active {
+        transform: scale(0.95);
+      }
+
+      .button .clip {
+        background: conic-gradient(
+          hsl(211, 100%, 80%),
+          hsl(211, 100%, 90%),
+          hsl(211, 100%, 75%)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .button:hover .clip {
+        -webkit-text-fill-color: black;
+        color: black;
+      }
+
+      .secondary {
+        display: inline-block;
+        font-size: 1.3rem;
+        color: hsl(211, 60%, 65%);
+        text-decoration: underline;
+        text-decoration-style: solid;
+        text-underline-offset: 0.5rem;
+        text-decoration-thickness: 0.05rem;
+        margin: 1rem 0 0 1rem;
+        transition: all 0.1s ease-out;
+      }
+
+      .secondary:hover {
+        color: hsl(211, 100%, 75%);
+        text-underline-offset: 0.7rem;
+      }
+
+      .secondary:active {
+        transform: scale(0.9);
+      }
+
+      .down-arr:after {
+        content: "↓";
+        display: inline-block;
+        margin-left: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      .hero .preview {
+        width: 100%;
+        max-width: 420px;
+        min-width: 285px;
+        min-height: 190px;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      hr {
+        height: 0;
+        max-width: 80vw;
+        width: 31.8rem;
+        /* background: hsl(211, 100%, 75%); */
+        border: 2px solid hsl(211, 40%, 25%);
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
+    gap: 1rem; /* Adds spacing between footer items */
+    text-align: center; /* Ensures text is centered */
+    margin-top: 3rem; /* Adds some spacing above the footer */
+    padding: 1rem; /* Adds padding inside the footer */
+}
+
+
+      .message-icon {
+        width: 1.2rem;
+        vertical-align: -0.1rem; /*available options: baseline, sub, super, text-top, text-bottom, middle, top, bottom, length, % */
+      }
+
+      .button img {
+        width: 2rem;
+        height: 2rem;
+        vertical-align: baseline;
+        margin-right: 0.3rem;
+        position: relative;
+        top: 0.25rem;
+      }
+
+      @media (max-width: 500px) {
+        .proof {
+          text-align: right;
+          display: inline-block;
+          vertical-align: top;
+          padding-top: 0.2rem;
+          margin-left: 0;
+        }
+        .proof .stars {
+          display: block;
+          margin-bottom: 0.2rem;
+        }
+        .proof .join {
+          display: block;
+          margin-top: 0.2rem;
+        }
+        hr {
+          margin: none;
+        }
+        .footer {
+          flex-direction: column;
+        }
+        .flex-item {
+          flex-direction: column !important;
+        }
+        .flex-item img,
+        .flex-item div {
+          width: 100%;
+          text-align: left !important;
+        }
+        .flex-item p {
+          padding: 0 2rem 0 0 !important;
+        }
+        .flex-item h3 {
+          padding-top: 0;
+        }
+        .hero {
+          text-align: left;
+          padding-top: 0;
+        }
+        .hero h1 {
+          max-width: 25rem;
+          font-size: 2.3rem;
+        }
+        .flex-rev {
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: center;
+          align-items: center;
+        }
+
+        br.med {
+          display: none;
+        }
+
+        br.rev-med {
+          display: block;
+        }
+      }
+
+      #backgroundCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: -1;
+        opacity: 0.3;
+      }
+
+      /* Metrics Section Styling */
+.metrics {
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Space between metrics */
+    text-align: center;
+    padding: 2rem;
+    background-color: #2e3440; /* Light gray background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 2rem auto;
+    max-width: 900px; /* Centered container */
+}
+
+.metric {
+    flex: 1;
+    max-width: 200px; /* Prevent metrics from being too wide */
+    padding: 1rem;
+    background: #4c566a; /* White card background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight depth effect */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.metric:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.metric h2 {
+    font-size: 2rem;
+    color: #88C0D0; /* Highlighted blue color */
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.metric p {
+    font-size: 1.1rem;
+    color: #D8DEE9; /* Subtle text color */
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .metrics {
+        flex-direction: column; /* Stack metrics vertically on smaller screens */
+        gap: 1rem;
+    }
+}
+  </style>
+ </head>
+ <body>
+  <div class="hero">
+   <img ,="" height="auto/" src="iphone.png" width="55%"/>
+   <br/>
+   <br/>
+   <h1>
+    Monitor Inventory in Real-Time.
+   </h1>
+   <p>
+    Seamlessly monitor inventory from flagship retailers with instant stock alerts, straight to your Discord or Slack server 🔔
+   </p>
+   <div class="flex-rev">
+    <a class="button" href="start.html">
+     <span class="clip">
+      Get Started
+     </span>
+     🚀
+    </a>
+   </div>
+   <section class="metrics">
+    <div class="metric">
+     <h2>
+      $1.2M+
+     </h2>
+     <p>
+      Sales Generated
+     </p>
+    </div>
+    <div class="metric">
+     <h2>
+      99%
+     </h2>
+     <p>
+      Uptime
+     </p>
+    </div>
+    <div class="metric">
+     <h2>
+      3000+
+     </h2>
+     <p>
+      Members Serviced
+     </p>
+    </div>
+   </section>
+  </div>
+  <hr/>
+  <div class="container" id="features">
+   <div class="flex-item">
+    <div>
+     <h3>
+      Support for 5 major retailers
+     </h3>
+     <p>
+      Enjoy instant updates from eBay, Target, Walmart, Home Depot and DSG with custom product support (more coming soon!)
+     </p>
+    </div>
+   </div>
+   <div class="flex-item">
+    <div>
+     <h3>
+      Never miss a restock.
+     </h3>
+     <p>
+      Inventrack monitors leading retailers 24/7 for updates and notifies your group instantly.
+     </p>
+    </div>
+   </div>
+   <div class="flex-item">
+    <div>
+     <h3>
+      Secure limited edition collectibles
+     </h3>
+     <p>
+      Be the first to know about limited edition releases, perfect for collectors and resellers.
+     </p>
+    </div>
+   </div>
+   <div class="flex-item">
+    <div>
+     <h3>
+      Customize your interface.
+     </h3>
+     <p>
+      Choose your favorite retailers and products; we will personalize your server to suit your needs with custom channels and roles.
+     </p>
+     <br>
+     <br>
+     <br>
+     <br>
+    </div>
+    <br/>
+    <br/>
+   </div>
+   <br/>
+   <br/>
+   <hr/>
+   <div class="footer" style="width: 100%; display: flex; justify-content: center; align-items: center; text-align: center; padding: 1rem; margin-top: 2rem; background-color: #2e3440; gap: 1rem;">
+    <a class="secondary" href="https://lukecampbell.blog/about.html">
+     About Me
+    </a>
+    <a class="secondary" href="mailto:lukec5737@gmail.com">
+     Contact
+    </a>
+   </div>
+  </div>
+ </body>
+</html>
