@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Inquiries</title>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: "Helvetica Neue", "SFPB", Arial, sans-serif;
+            color: hsl(220, 15%, 85%);
+            background-color: #2E3440;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .banner {
+            width: 100%;
+            height: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #2E3440;
+            border-radius: 10px;
+            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); */
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: hsl(211, 90%, 75%);
+        }
+        p {
+            text-align: center;
+            font-size: 1.1rem;
+            color: hsl(220, 20%, 90%);
+            margin-bottom: 1.5rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        label {
+            font-size: 1.1rem;
+            color: hsl(220, 20%, 90%);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            color: #3b4252;
+            background-color: #eceff4;
+            border: none;
+            border-radius: 5px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px hsl(211, 80%, 70%);
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .button {
+        background: transparent;
+        font-family: "SF Pro Display";
+        letter-spacing: -0.03rem;
+        text-decoration: none;
+        border-radius: 10rem;
+        padding: 0.6rem 1.5rem 0.85rem 1.8rem;
+        font-size: 2rem;
+        font-weight: 700;
+        font-family: inherit;
+        border: 3px solid hsl(211, 100%, 75%);
+        color: hsl(211, 100%, 75%);
+        outline: none !important;
+        position: relative;
+        z-index: 3;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.1s ease-out;
+        margin-left: 0.2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+      }
+
+      .button:hover {
+        background: radial-gradient(
+          hsl(211, 100%, 80%),
+          hsl(211, 100%, 75%),
+          hsl(211, 100%, 55%)
+        );
+        -webkit-background-clip: none;
+        -webkit-text-fill-color: black;
+        color: black;
+      }
+
+      .button:active {
+        transform: scale(0.95);
+      }
+
+      .button .clip {
+        background: conic-gradient(
+          hsl(211, 100%, 80%),
+          hsl(211, 100%, 90%),
+          hsl(211, 100%, 75%)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .button:hover .clip {
+        -webkit-text-fill-color: black;
+        color: black;
+      }
+        .banner {
+            width: 100%; /* Ensures it scales across the page width */
+            max-width: 1200px; /* Limits it to a reasonable maximum width */
+            height: auto; /* Maintains aspect ratio */
+            /*max-height: 600px; /* Keeps the height visually appropriate */
+            margin: 0 auto; /* Centers it horizontally */
+            display: block; /* Ensures proper alignment */
+            object-fit: cover; /* Prevents stretching and keeps it looking good */
+            object-position: center; /* Centers the image within its container */
+        }
+        .hero {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        /* padding-top: 9vh;
+        padding-bottom: 4rem; */
+        margin-bottom: 0;
+      }
+
+      .hero h1 {
+        line-height: 0.95;
+        letter-spacing: -0.06rem;
+        font-size: 2.7rem;
+        color: hsl(211, 100%, 65%);
+        background: conic-gradient(
+          hsl(211, 100%, 85%),
+          hsl(211, 100%, 95%),
+          hsl(211, 100%, 75%)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        padding-bottom: 1.2rem;
+      }
+      .hero title {
+        line-height: 1;
+        letter-spacing: -0.05rem;
+        font-size: 5.5rem;
+        color: hsl(211, 100%, 65%);
+        background: conic-gradient(
+          hsl(211, 100%, 85%),
+          hsl(211, 100%, 95%),
+          hsl(211, 100%, 75%)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700; /* Keep bold for prominence */
+        text-align: center; /* Align centrally if needed */
+        padding-bottom: 1.5rem; /* Slightly increased padding for spacing */
+      }
+
+      .hero p,
+      .bottom p {
+        font-size: 1.3rem;
+        margin-bottom: 0.7rem;
+      }
+      hr {
+        height: 0;
+        max-width: 80vw;
+        width: 31.8rem;
+        /* background: hsl(211, 100%, 75%); */
+        border: 2px solid hsl(211, 40%, 25%);
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+      }
+      .animated-image {
+            width: 80%; /* Adjust size as needed */
+            height: auto;
+            margin: 0 auto; /* Centers it horizontally */
+            display: block; /* Ensures proper alignment */
+            object-fit: cover; /* Prevents stretching and keeps it looking good */
+            object-position: center; /* Centers the image within its container */
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0.8; /* Initial state */
+        }
+
+        .animated-image:hover {
+            transform: scale(1.1); /* Zoom effect */
+            opacity: 1; /* Full opacity */
+        }
+
+        .testimonial-section {
+    background-color: #2E3440;
+    color: hsl(220, 15%, 90%);
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 50px auto;
+    max-width: 1200px; /* Ensures the section fits nicely within the page */
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); */
+}
+
+.testimonial-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: hsl(211, 90%, 75%);
+}
+
+.testimonial-container {
+    display: flex; /* Switches to inline layout */
+    justify-content: space-between; /* Spaces out the testimonials evenly */
+    gap: 20px; /* Adds spacing between testimonials */
+    flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+}
+
+.testimonial {
+    background-color: #3b4252;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 calc(33.333% - 20px); /* Each testimonial takes 1/3 of the container width */
+    max-width: 300px; /* Optional: Prevents testimonials from being too wide */
+    text-align: left; /* Aligns text for better readability */
+}
+.testimonial:hover {
+    transform: scale(1.1); /* Lifts the testimonial on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.rating {
+    font-size: 1.5rem;
+    color: gold;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.author {
+    font-size: 1rem;
+    font-weight: bold;
+    color: hsl(220, 30%, 80%);
+}
+
+      
+
+    </style>
+</head>
+<body>
+    <br><br>
+    <div class="hero">
+        <h1>Power Your Community With Smarter Tools</h1>
+        <p>Choose your platform and streamline the way your group stays informed</p>
+        <hr/>
+        <div class="flex-rev">
+            <a class="button" href="#form">
+             <span class="clip">
+              Apply Now
+             </span>
+             📩
+            </a>
+           </div>
+    </div>
+    <br><br>
+    <!-- Banner Section -->
+    <img src="./1cover.jpg" alt="Banner" class="animated-image">
+    
+    
+    <hr/>
+
+    <section id="testimonials" class="testimonial-section">
+        <div class="hero">
+            <h1>What Our Users Are Saying</h1>
+        </div>
+        
+        <div class="testimonial-container">
+            <!-- Testimonial 1 -->
+            <div class="testimonial">
+                <p class="quote">"A game-changer for securing drops for our members. The success channel speaks for itself; the monitors are essential. "</p>
+                <div class="rating">★★★★★</div>
+                <p class="author">- Ben, Book of Alpha Server Owner (3000+ paying members)</p>
+            </div>
+    
+            <!-- Testimonial 2 -->
+            <div class="testimonial">
+                <p class="quote">"My sales skyrocketed after InvenTrack monitors were implemented. Can't thank you enough."</p>
+                <div class="rating">★★★★★</div>
+                <p class="author">- Justin, Server Member</p>
+            </div>
+    
+            <!-- Testimonial 3 -->
+            <div class="testimonial">
+                <p class="quote">"We've never had this kind of success in such a short perod of time. Members are going crazy over this."</p>
+                <div class="rating">★★★★★</div>
+                <p class="author">- Max, Server Moderator</p>
+            </div>
+        </div>
+      
+    </section>
+    
+    <hr/>
+
+    <div class="container">
+        <div id="form" class="hero">
+            <h1>Client Inquiries</h1>
+            <p>Please complete the interest form below with details about your group and how you intend to use our software. Due to limited server capacity, we can accommodate only a select number of clients at a time. We will review your submission and notify you via email if your group aligns with our current availability and objectives.</p>
+        </div>
+        <form id="inquiry" action="https://formspree.io/f/myzyajoj" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your email" required>
+        
+            <label for="server-name">Server Name:</label>
+            <input type="text" id="server-name" name="server_name" placeholder="Discord or Slack server name" required>
+        
+            <label for="member-count">Server Member Count:</label>
+            <input type="number" id="member-count" name="server_member_count" placeholder="Number of members" min="1" required>
+        
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" placeholder="Write a brief response..." required></textarea>
+        
+            <!-- <button type="submit">Submit</button> -->
+            <div class="hero">
+                <div class="flex-rev">
+                    <button class="button" type="submit">
+                        <span class="clip">Submit</span> ✅
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function () {
+            const form = document.getElementById('inquiry');
+    
+            // Check if the form is valid
+            if (form.checkValidity()) {
+                alert('Success! Your form has been submitted.');
+                form.reset(); // Clear the form after submission
+            } else {
+                alert('Please fill out all required fields before submitting.');
+                form.reportValidity(); // Highlight the invalid fields
+            }
+        });
+    </script>
+    
+</body>
+</html>
