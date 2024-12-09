@@ -1,1 +1,2 @@
 # inventrack
+![diagram](architecture.png)
